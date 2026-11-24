@@ -15,27 +15,47 @@ def compute_norm(arr: np.ndarray, norm_type: str) -> float:
         The computed norm as a float
     """
     # Your code here
-    ls = arr.flatten()
-    val = 0
-    if norm_type == 'l1':
-        for i in ls:
-            val += abs(i)
-    elif norm_type == 'l2':
-        for i in ls:
-            val+= i**2
-        val = math.sqrt(val)
-    elif norm_type == 'linf':
-        val = max(abs(ls))
-    elif norm_type == 'frobenius':
-        if len(arr.shape) != 2:
-            raise ValueError("ValueError")
-        else:
-            for i in ls:
-                val+= i**2
-            val = math.sqrt(val)
+    # ls = arr.flatten()
+    # val = 0
+    # if norm_type == 'l1':
+    #     for i in ls:
+    #         val += abs(i)
+    # elif norm_type == 'l2':
+    #     for i in ls:
+    #         val+= i**2
+    #     val = math.sqrt(val)
+    # elif norm_type == 'linf':
+    #     val = max(abs(ls))
+    # elif norm_type == 'frobenius':
+    #     if len(arr.shape) != 2:
+    #         raise ValueError("ValueError")
+    #     else:
+    #         for i in ls:
+    #             val+= i**2
+    #         val = math.sqrt(val)
+    #         return val
+    # else:
+    #     raise ValueError("ValueError")
+    # return val
+
+    if norm_type=='l1':
+        arr = arr.flatten()
+        val = np.linalg.norm(arr, ord=1)
+        return val
+        # return np.linalg.norm(arr, ord=1)
+    elif norm_type=='l2':
+        arr = arr.flatten()
+        return np.linalg.norm(arr, ord=2)
+    elif norm_type=='linf':
+        arr = arr.flatten()
+        return np.linalg.norm(arr, ord=np.inf)
+    elif norm_type=='frobenius':
+        try:
+            val = np.linalg.norm(arr, ord='fro')
             return val
+        except:
+            raise ValueError("ValueError")
     else:
         raise ValueError("ValueError")
-    return val
 
     pass
