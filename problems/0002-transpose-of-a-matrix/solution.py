@@ -11,5 +11,12 @@ def transpose_matrix(a: list[list[int|float]]) -> list[list[int|float]]:
         The transposed matrix of shape (n, m)
     """
     # Your code here
-    arr = np.transpose(a)
+    # arr = np.transpose(a)
+
+    shape = np.shape(a)
+    arr = np.zeros((shape[1], shape[0]))
+    for i in range(shape[0]):
+        for j in range(shape[1]):
+            arr[j][i] = a[i][j]
+
     return arr
